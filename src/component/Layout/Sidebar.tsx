@@ -1,13 +1,13 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { SAMPLE_COLLECTOR } from '../../constants/constants';
 import type { MenuItem } from '../../interfaces/CommonInterface';
-import { STAFF_MENU } from '../../constants/constants';
 
 
 
 export const Sidebar: React.FC = () => {
 
-    const menuItems : MenuItem[] = STAFF_MENU
+    const menuItems : MenuItem[] = SAMPLE_COLLECTOR
   return (
     <div className="w-64 min-h-screen bg-[#e3e8e8] shadow-md flex flex-col">
       {menuItems.map((item) => (

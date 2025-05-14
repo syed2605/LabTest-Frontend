@@ -23,6 +23,7 @@ export interface FormObjectModel{
     multioptions?:StatusDropdown[]  |Option[] | undefined,
     isArray?:boolean,
     inputType?:string,
+    dependency?: string;
   };
 
 export interface StatusDropdown
@@ -30,7 +31,7 @@ export interface StatusDropdown
 export interface EnrollFormValuesInterface
     { prefered_slot: string; prefered_timeslot: string }
 
-    export interface EnrollmentInterface {
+export interface EnrollmentInterface {
         _id?: string;
         trialId?: string;
         patientId?: string;
@@ -44,7 +45,7 @@ export interface EnrollFormValuesInterface
         updatedAt?: Date;
     }
 
-    export interface TrailDetail {
+export interface TrailDetail {
         title: string;
         description: string;
         status: string;
@@ -57,7 +58,7 @@ export interface EnrollFormValuesInterface
         updatedAt: string;
       }    
       
-      export interface PatientDetails {
+export interface PatientDetails {
         _id: string| number;
         patientId?:string;
         name: string;
@@ -69,7 +70,47 @@ export interface EnrollFormValuesInterface
         actions?: string[];
       }
 
-      export interface MenuItem {
+export interface MenuItem {
         label: string;
         path: string;
       }
+export interface TableHeadersInterface {
+  label: string,
+  key: string
+}
+
+export interface ActionsInterface {
+    type: string,
+    label: string,
+    function: (data: unknown) => void
+    disabled?: boolean
+}
+
+export interface AllSampleDataInterface {
+  patientName?: string;
+    departmentName?: string;
+    collectionDate?: Date;
+    physicianName?: string;
+    tissueType?: string;
+    processIds?: string;
+    currentProcessId?: string;
+    status?: string;
+}
+
+export interface UserDataInterface {
+  _id: string;
+  name: string;
+  role: string;
+  email: string;
+  age: number;
+  gender: string;
+  phoneNumber : number;
+  departmentId?: string;
+  processId?: string;
+}
+export interface DepartmentData {
+  _id: string;
+  title: string;
+  description: string;
+  status: string;
+}
