@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import API from '../axios/axios';
+import { Box, Button, Modal, Typography } from '@mui/material';
+import Forms from '../component/Form';
+import { useNavigate } from 'react-router-dom';
 
 const Signoff = () => {
   const [taskList, setTaskList] = useState([]);
   const [patientDetails, setPatientsDetails] = useState({});
-  const [processDetails, setProcessDetails] = useState({});
-  const [department, setDepartment] = useState({});
+  const navigate = useNavigate();
   const getSignoffDetails = async () => {
     try {
       const res = await API.get(`/api/samples/status?status=completed`);
@@ -42,6 +44,7 @@ const Signoff = () => {
     <>
       <h1>Signoff</h1>
       {taskList?.map((task: any) => {
+        console.log('task is', task);
         return (
           <div className=" w-full flex justify-between  h-fit border-1 border-gray-200 my-4 p-4 rounded">
             <div className="details flex flex-col gap-2 ">
@@ -55,17 +58,16 @@ const Signoff = () => {
                 <span className="font-semibold">{task?.physicianName}</span>
               </p>
               <p className="font-light">
-                Current Process:{' '}
-                <span className="font-semibold">{processDetails?.title}</span>
-              </p>
-              <p className="font-light">
                 {' '}
                 Status: <span className="font-semibold">{task?.status}</span>
               </p>
             </div>
             <div className="button-container flex  gap-4 items-center">
-              <button className="text-white px-4 py-2 rounded-md h-fit  bg-blue-500 font-semibold">
-                Add Progress
+              <button
+                onClick={() => navigate(`/details/${task?._id}`)}
+                className="text-blue-500 font-semibold"
+              >
+                View Details
               </button>
             </div>
           </div>

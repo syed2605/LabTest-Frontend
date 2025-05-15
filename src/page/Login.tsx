@@ -38,7 +38,7 @@ const Login = () => {
       // console.log('res from login', res);
       actions.setSubmitting(true);
       actions.resetForm();
-      router('/home');
+      router('/samples');
     } catch (error: unknown) {
       // renderToast(res?.message, false);
       console.log('error', error);
