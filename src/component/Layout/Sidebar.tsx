@@ -4,6 +4,7 @@ import type { MenuItem } from '../../interfaces/CommonInterface';
 import { MANAGER_MENU } from '../../constants/constants';
 
 export const Sidebar: React.FC = () => {
+  
   const menuItems: MenuItem[] = MANAGER_MENU;
   return (
     <div className="w-64 min-h-screen bg-[#e3e8e8] shadow-md flex flex-col">

@@ -8,7 +8,7 @@ import {
   Paper,
   Button,
 } from '@mui/material';
-import { type ActionsInterface, type TableHeadersInterface } from '../../interfaces/CommonInterface';
+import {  type PatientSampleActionsInterface, type TableHeadersInterface } from '../../interfaces/CommonInterface';
 
 interface DynamicTableProps<T> {
   headers: TableHeadersInterface[];
@@ -40,13 +40,13 @@ const DynamicTable = <T,>({ headers, data }: DynamicTableProps<T>) => {
                   return (
                     <TableCell key={index}>
                       {(row as { [key: string]: [] })[header?.key]?.map(
-                        (action: ActionsInterface) => {
+                        (action: PatientSampleActionsInterface) => {
                           return (
                             <Button
                               sx={{
                                 display: action.disabled ? 'none' : 'flex',
                                 backgroundColor:
-                                  action?.label === 'Borrow' ? 'green' : 'red',
+                                  action?.label === 'Samples' ? 'green' : 'red',
                                 color: 'white',
                                 marginRight: '5px',
                               }}
@@ -86,6 +86,17 @@ const DynamicTable = <T,>({ headers, data }: DynamicTableProps<T>) => {
                       )} */}
                     </TableCell>
                   );
+                }
+                if(header?.key === 'currentProcessId'){
+                  return(
+                    <TableCell key={index}>
+                    {typeof row === 'object' &&
+                    row !== null &&
+                    header?.key in row && (row as { [key: string]: string })[header?.key] !== ""
+                      ? (row as { [key: string]: string })[header?.key]
+                      : "Not Assigned"}
+                  </TableCell>
+                  )
                 }
                 return (
                   <TableCell key={index}>

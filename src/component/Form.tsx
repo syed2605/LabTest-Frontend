@@ -14,6 +14,7 @@ import type {
   StatusDropdown,
 } from '../../src/interfaces/CommonInterface';
 import MultiChip from '../component/Chip/Chip';
+import type { ChangeEvent } from 'react';
 
 interface Iprops {
   fields: FormObjectModel[];
@@ -43,7 +44,7 @@ const Forms = ({
         onSubmit={onSubmitFn}
         enableReinitialize
       >
-        {({ values, setFieldValue }) => (
+        {({ setFieldValue }) => (
         <Form className="flex flex-col w-full space-y-4">
           {fields?.map((item: FormObjectModel, index) => {
             let fieldComponent;
@@ -102,7 +103,7 @@ const Forms = ({
                       className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                       id={item?.id}
                       name={item?.id}
-                      onChange={(e: any) => {
+                      onChange={(e: ChangeEvent<HTMLSelectElement>) => {
                         setFieldValue(item?.id,e.target.value)
                         if (item?.dependency && onContextualChange) {
                           onContextualChange(item?.dependency, e.target.value);

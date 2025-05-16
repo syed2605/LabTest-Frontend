@@ -67,7 +67,6 @@ export interface PatientDetails {
         phone: string | number;
         aadhar: string | number;
         password?: string;
-        actions?: string[];
       }
 
 export interface MenuItem {
@@ -79,21 +78,24 @@ export interface TableHeadersInterface {
   key: string
 }
 
-export interface ActionsInterface {
+export interface PatientSampleActionsInterface {
     type: string,
     label: string,
-    function: (data: unknown) => void
+    function: (data: UserDataInterface) => void
     disabled?: boolean
 }
 
 export interface AllSampleDataInterface {
   patientName?: string;
+  patientId?: string;
     departmentName?: string;
+    departmentId?: string;
     collectionDate?: Date;
     physicianName?: string;
     tissueType?: string;
     processIds?: string;
     currentProcessId?: string;
+    currentProcessName?: string;
     status?: string;
 }
 
@@ -107,10 +109,21 @@ export interface UserDataInterface {
   phoneNumber : number;
   departmentId?: string;
   processId?: string;
+  actions?: PatientSampleActionsInterface[];
 }
 export interface DepartmentData {
   _id: string;
   title: string;
   description: string;
+  status: string;
+}
+
+export interface ProcessDataInterface  {
+  _id:string;
+  title: string;
+  description: string;
+  departmentId: string;
+  sequence: number;
+  validRange: string;
   status: string;
 }
